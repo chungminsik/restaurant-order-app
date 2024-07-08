@@ -24,5 +24,3 @@ CREATE TABLE orders (
     FOREIGN KEY (orders_seat_id) REFERENCES seat(seat_id)
 );
 ```
-# 특이사항
-- main 클래스의 이름이 resauarant로 설정됨
