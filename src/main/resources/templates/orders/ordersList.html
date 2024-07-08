@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Orders List</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            border: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background-color: #f9f9f9;
+        }
+        table {
+            margin: 0 auto; /* Centers the table horizontally */
+            border-collapse: collapse;
+            width: 100%;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button, a {
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        button:hover, a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>주문 리스트</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>메뉴 이름</th>
+                    <th>갯수</th>
+                    <th>합계</th>
+                    <th>편집</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="order : ${orders}">
+                    <td th:text="${order.ordersMenuName}"></td>
+                    <td th:text="${order.ordersAmount}"></td>
+                    <td th:text="${order.ordersPriceAmount}"></td>
+                    <td>
+                        <a th:href="@{'/' + ${order.ordersSeatId} + '/orders/update'}">편집</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button th:onclick="'location.href=\'/' + ${seatId} + '/orders/create\''">주문 추가</button>
+        <button onclick="location.href='/seat'">뒤로</button>
+    </div>
+
+    <script>
+        function createOrder() {
+            var menuName = prompt("주문할 메뉴 이름을 입력하세요:");
+            var amount = prompt("주문할 갯수를 입력하세요:");
+            if (menuName != null && menuName.trim() !== "" && amount != null && amount.trim() !== "" && !isNaN(amount)) {
+                var form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", "/" + seatId + "/order/create");
+
+                var nameInput = document.createElement("input");
+                nameInput.setAttribute("type", "hidden");
+                nameInput.setAttribute("name", "ordersMenuName");
+                nameInput.setAttribute("value", menuName);
+                form.appendChild(nameInput);
+
+                var amountInput = document.createElement("input");
+                amountInput.setAttribute("type", "hidden");
+                amountInput.setAttribute("name", "ordersAmount");
+                amountInput.setAttribute("value", amount);
+                form.appendChild(amountInput);
+
+                document.body.appendChild(form);
+                form.submit();
+            } else {
+                alert("올바른 메뉴 이름과 갯수를 입력해야 합니다.");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Orders">
+	<select id="findAllSeatOrders" parameterType="int" resultType="orders">
+		SELECT 
+			orders_id as ordersId, 
+			orders_menu_name as ordersMenuName, 
+			orders_amount as ordersAmount, 
+			orders_price_amount as ordersPriceAmount, 
+			orders_datetime as ordersDatetime, 
+			orders_seat_id as ordersSeatId 
+		FROM 
+			restaurant.orders 
+		WHERE 
+			orders_seat_id = #{seatId};
+	</select>
+	
+	<insert id="create" parameterType="orders">
+		INSERT INTO 
+			restaurant.orders (`orders_menu_name`, `orders_amount`, `orders_price_amount`, `orders_seat_id`) 
+		VALUES 
+			(#{ordersMenuName}, #{ordersAmount}, #{ordersPriceAmount}, #{ordersSeatId});
+	</insert>
+</mapper>      

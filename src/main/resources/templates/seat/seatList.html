@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Seat List</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            border: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background-color: #f9f9f9;
+        }
+        table {
+            margin: 0 auto; /* Centers the table horizontally */
+            border-collapse: collapse;
+            width: 100%;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button, a {
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        button:hover, a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script th:inline="javascript">
+        function confirmDelete(seatId) {
+            if (confirm('정말 삭제하시겠습니까?')) {
+                location.href = seatId + '/seat/delete';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>테이블 주문 현황</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>테이블 이름</th>
+                    <th>총 주문 가격</th>
+                    <th>주문 상세</th>
+                    <th>초기화</th>
+                    <th>설정</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="seat : ${seats}">
+                    <td th:text="${seat.seatName}"></td>
+                    <td th:text="${seat.seatPriceAmount}"></td>
+                    <td>
+                        <a th:href="@{'/' + ${seat.seatId} + '/orders'}">주문 상세</a>
+                    </td>
+                    <td>
+                        <a th:href="@{'/' + ${seat.seatId} + '/seat/clear'}">초기화</a>
+                    </td>
+                    <td>
+                        <button type="button" th:onclick="'editSeat(' + ${seat.seatId} + ')'">죄석 이름 편집</button>
+                        <a href="#" th:onclick="'confirmDelete(' + ${seat.seatId} + ');'">좌석 삭제</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="createSeat()">테이블 새로 추가</button>
+        <button onclick="location.href='/'">홈으로</button>
+    </div>
+
+    <script>
+        function createSeat() {
+            var seatName = prompt("등록할 Seat 이름을 입력하세요:");
+            if (seatName != null && seatName.trim() !== "") {
+                var form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", "/seat/create");
+
+                var input = document.createElement("input");
+                input.setAttribute("type", "hidden");
+                input.setAttribute("name", "seatName");
+                input.setAttribute("value", seatName);
+                form.appendChild(input);
+
+                document.body.appendChild(form);
+                form.submit();
+            } else {
+                alert("Seat 이름을 입력해야 합니다.");
+            }
+        }
+
+        function editSeat(seatId) {
+            var newSeatName = prompt("새로운 Seat 이름을 입력하세요:");
+            if (newSeatName != null && newSeatName.trim() !== "") {
+                var form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", "/seat/update");
+
+                var idInput = document.createElement("input");
+                idInput.setAttribute("type", "hidden");
+                idInput.setAttribute("name", "seatId");
+                idInput.setAttribute("value", seatId);
+                form.appendChild(idInput);
+
+                var nameInput = document.createElement("input");
+                nameInput.setAttribute("type", "hidden");
+                nameInput.setAttribute("name", "seatName");
+                nameInput.setAttribute("value", newSeatName);
+                form.appendChild(nameInput);
+
+                document.body.appendChild(form);
+                form.submit();
+            } else {
+                alert("Seat 이름을 입력해야 합니다.");
+            }
+        }
+    </script>
+</body>
+</html>

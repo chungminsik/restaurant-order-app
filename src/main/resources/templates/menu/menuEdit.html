@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>메뉴 편집</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            border: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            margin-bottom: 15px;
+            padding: 8px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>메뉴 편집</h1>
+        <form th:action="@{/menu/update}" th:object="${menu}" method="post">
+            <input type="hidden" th:field="*{menuId}"/> <!-- 메뉴 ID는 hidden 필드로 전달 -->
+            <div>
+                <label for="menuName">메뉴 이름:</label>
+                <input type="text" id="menuName" th:field="*{menuName}" maxlength="30" required/>
+            </div>
+            <div>
+                <label for="menuPrice">메뉴 가격:</label>
+                <input type="number" id="menuPrice" th:field="*{menuPrice}" required/>
+            </div>
+            <div>
+                <button type="submit">편집</button>
+            </div>
+        </form>
+
+        <!-- 이전 메뉴로 돌아가는 버튼 -->
+        <div>
+            <button onclick="location.href='/menu'">이전으로</button>
+        </div>
+    </div>
+</body>
+</html>
+

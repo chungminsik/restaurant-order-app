@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            border: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background-color: #f9f9f9;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+        a {
+            display: block;
+            padding: 10px 20px;
+            margin: 5px 0;
+            border: 1px solid #007BFF;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #007BFF;
+            background-color: white;
+        }
+        a:hover {
+            background-color: #007BFF;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HOME</h1>
+        <ul>
+            <li><a href="/menu">음식점 메뉴 목록</a></li>
+        </ul>
+        <ul>
+            <li><a href="/seat">자리별 주문</a></li>
+        </ul>
+    </div>
+</body>
+</html>

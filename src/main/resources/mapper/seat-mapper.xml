@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="Seat">
+	<insert id="create" parameterType="seat">
+		INSERT INTO restaurant.seat (seat_name) VALUES (#{seatName});
+	</insert>
+
+	<select id="findAll" resultType="seat">
+		SELECT seat_id as seatId, seat_name as seatName, seat_price_amount as seatPriceAmount FROM restaurant.seat;
+	</select>
+	
+	<select id="findById" parameterType="int" resultType="seat">
+    	SELECT 
+    		seat_id as seatId, seat_name as seatName, seat_price_amount as seatPriceAmount 
+    	FROM 
+    		restaurant.seat 
+    	WHERE 
+    		seat_id=#{seatId};
+    </select>
+	
+	<update id="update" parameterType="seat">
+		UPDATE 
+    		restaurant.seat
+    	SET 
+    		seat_name = #{seatName},
+    		seat_price_amount = #{seatPriceAmount}
+    	WHERE 
+    		seat_id = #{seatId};
+	</update>
+	
+	<delete id="deleteSeatOrder" parameterType="int">
+		DELETE FROM
+			orders
+		WHERE 
+			orders_seat_id = #{seatId};
+	</delete>
+	
+	<delete id="deleteSeat" parameterType="int">
+		DELETE FROM
+			seat
+		WHERE
+			seat_id = #{seatId};
+	</delete>
+</mapper>
