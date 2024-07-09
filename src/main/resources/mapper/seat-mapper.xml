@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
         
 <mapper namespace="Seat">
-	<insert id="create" parameterType="seat">
+	<insert id="create" parameterType="seat" useGeneratedKeys="true" keyProperty="seatId">
 		INSERT INTO restaurant.seat (seat_name) VALUES (#{seatName});
 	</insert>
 

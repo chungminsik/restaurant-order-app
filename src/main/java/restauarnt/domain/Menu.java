@@ -11,4 +11,14 @@ public class Menu {
 	private String menuName;
 	private int menuPrice;
 	
+	public Menu() {
+		
+	}
+	
+	public Menu(Long menuId, String menuName, int menuPrice) {
+		this.menuId = menuId;
+		this.menuName = menuName;
+		this.menuPrice = menuPrice;
+	}
+	
 }

@@ -22,8 +22,8 @@ public class MenuService {
 		return menuRepository.selectById(menuId);
 	}
 	
-	public void createMenu(Menu menu) {
-		menuRepository.create(menu);
+	public Menu createMenu(Menu menu) {
+		return menuRepository.create(menu);
 	}
 
 	public void updateMenu(Menu menu) {

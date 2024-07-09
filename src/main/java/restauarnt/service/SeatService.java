@@ -28,8 +28,8 @@ public class SeatService {
 		return seatRepository.findByIdSeat(seatId);
 	}
 
-	public void createSeat(Seat seat) {
-		seatRepository.createSeat(seat);
+	public Seat createSeat(Seat seat) {
+		return seatRepository.createSeat(seat);
 	}
 
 	public void updateSeat(Seat seat) {

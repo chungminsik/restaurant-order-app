@@ -14,8 +14,10 @@ public class MenuRepository {
 	
 	private final SqlSessionTemplate sql;
 
-	public void create(Menu menu) {
+	public Menu create(Menu menu) {
 		sql.insert("Menu.create", menu);
+		
+		return menu;
 	}
 	
 	public List<Menu> selectAll() {

@@ -22,8 +22,10 @@ public class SeatRepository {
 		return sql.selectOne("Seat.findById", seatId);
 	}
 
-	public void createSeat(Seat seat) {
+	public Seat createSeat(Seat seat) {
 		sql.insert("Seat.create", seat);
+		
+		return seat;
 	}
 
 	public void updateSeat(Seat seat) {
