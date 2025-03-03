@@ -43,19 +43,19 @@
 
 ## 注文管理
 テーブルごとに注文を等読できます。
-[이미지]
+![Image](https://github.com/user-attachments/assets/6300761c-d17e-432e-89d7-a36eeb8c1237)
 
 数量とメニューを定めることができます。数量の基本値は1です。
-[이미지]
+![Image](https://github.com/user-attachments/assets/0595caa0-332e-45dd-b8e7-ff3014db211b)
 
 注文登録はメニューから登録したメニューをセレクトボックスから選択できます。
-[이미지]
+![Image](https://github.com/user-attachments/assets/9620bdbb-021d-4a4e-bedd-80344d592b7f)
 
 注文を追加すると次のようにテーブルに表示されます。
-[이미지]
+![Image](https://github.com/user-attachments/assets/cd4c1f8f-1caa-4014-8e50-b87e0d16a753)
 
 初期化ボタンを押すと、注文に保存した内容が消えます。
-[이미지]
+![Image](https://github.com/user-attachments/assets/59a05b44-0e5d-4a23-aa6f-768953bb1f1b)
 
 # アーキテクチャ説明
 
