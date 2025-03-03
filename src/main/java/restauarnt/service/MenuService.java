@@ -32,9 +32,6 @@ public class MenuService {
 
 	public void deleteMenu(int menuId) {
 		menuRepository.delete(menuId);
-		
-		// TODO Auto-generated method stub
-		
 	}
 
 }
