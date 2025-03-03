@@ -28,10 +28,10 @@
 
 ## メニュー管理
 すでに登録されているメニューを見ることができます。
-[이미지]
+![Image](https://github.com/user-attachments/assets/b8a98be7-084f-40e5-9e3f-a7ff0e6fa8e5)
 
 レストランで注文できるメニューを登録します。
-[이미지]
+![Image](https://github.com/user-attachments/assets/7c5e7918-335c-4c63-bd36-fb3a05ce5582)
 
 ## 席管理
 テーブルを設定できる画面です。 レストランによってテーブルの数と名前を決めることができます。
@@ -39,7 +39,7 @@
 テーブルでは、テーブルで注文した価格の合計を表示して計算するときに便利です。
 
 注文が完了したら、初期化ボタンを押して、新しいお客様のための準備をします。
-[이미지]
+![Image](https://github.com/user-attachments/assets/c55168bf-43d7-411c-826a-e3ec343c46ea)
 
 ## 注文管理
 テーブルごとに注文を等読できます。
