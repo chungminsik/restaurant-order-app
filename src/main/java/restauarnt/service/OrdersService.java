@@ -59,6 +59,16 @@ public class OrdersService {
 		
 		seatRepository.updateSeat(totalAmountUpdatedSeat);
 	}
-	
-	
+
+
+    public void deleteOrders(int orderId, int seatId, int ordersPriceAmount) {
+
+		Seat seat = seatRepository.findByIdSeat(seatId);
+		int newSeatPriceAmount = seat.getSeatPriceAmount() - ordersPriceAmount;
+
+		seat.setSeatPriceAmount(newSeatPriceAmount);
+		seatRepository.updateSeat(seat);
+
+		ordersRepository.delete(orderId);
+    }
 }

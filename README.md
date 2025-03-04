@@ -16,9 +16,9 @@
   2. Springのモジュール化された設計構造によりアプリケーションの拡張性が良い
   3. 多くの開発者が使用しているウェブプログラミングツールとして多くのリファレンス資料がある
 
-## front-end : thymeleaf, bootstrap
+## front-end : thymeleaf, Javascript
 - 使用理由 :　
-  1. 速い画面開発のためにThymeleafとBootstrapを利用
+  1. 速い画面開発のためにThymeleafを利用
 
 ## database : mybatis, mysql
 - 使用理由 : 

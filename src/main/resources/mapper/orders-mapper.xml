@@ -23,4 +23,11 @@
 		VALUES 
 			(#{ordersMenuName}, #{ordersAmount}, #{ordersPriceAmount}, #{ordersSeatId});
 	</insert>
-</mapper>      
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+			orders
+		WHERE
+			orders_id = #{orderId};
+	</delete>
+</mapper>

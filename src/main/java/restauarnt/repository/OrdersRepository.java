@@ -23,5 +23,7 @@ public class OrdersRepository {
 		
 	}
 
-	
+    public void delete(int orderId) {
+		sql.delete("Orders.delete", orderId);
+    }
 }

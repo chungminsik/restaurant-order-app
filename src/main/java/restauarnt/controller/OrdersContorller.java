@@ -54,10 +54,26 @@ public class OrdersContorller {
 		return "redirect:/" + seatId + "/orders";
 	}
 	
-	@GetMapping("{seatId}/orders/update")
+	@GetMapping("/{seatId}/orders/update")
 	public String ordersEditForm(@PathVariable("seatId") int seatId, Model model) {
-		model.addAttribute(ordersService.findByIdOrders(seatId));
+		model.addAttribute("orders", ordersService.findByIdOrders(seatId));
 		
 		return "orders/ordersEdit";
+	}
+
+
+	@PostMapping("/{seatId}/orders/update")
+	public String ordersEdit(@ModelAttribute Orders orders){
+		//TODO
+		return "";
+
+	}
+
+	@PostMapping("/{seatId}/orders/delete")
+	public String ordersDelete(@RequestParam("ordersId") int ordersId, @RequestParam("ordersPriceAmount") int ordersPriceAmount, @PathVariable("seatId") int seatId){
+		ordersService.deleteOrders(ordersId, seatId, ordersPriceAmount);
+
+		return "redirect:/" + seatId + "/orders";
+
 	}
 }
