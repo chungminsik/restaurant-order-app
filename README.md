@@ -96,35 +96,51 @@ erDiagram
 
 ## スクリーンショット
 ### ホーム画面
-홈화면에서는 메뉴를 설정하는 버튼과 레스토랑 자리별 주문을 관리하는 화면을 선택할 수 있습니다.
-[image]
+ホーム画面では、メニューを設定するボタンと、レストランの席ごとの注文を管理する画面を選択できます。
+
+<img width="1448" alt="Image" src="https://github.com/user-attachments/assets/4d9d5994-9801-49a3-855a-bbf46e1564e2" />
 
 ### メニュー設定
-메뉴를 설정하고 수정하고 삭제하는 화면입니다
-[image]
+メニューを設定、編集、削除する画面です。
 
-메뉴는 이름과 가격을 설정합니다.
-[image]
+<img width="1113" alt="Image" src="https://github.com/user-attachments/assets/d23e0a2b-9c7e-4aad-ba11-30c82c750ac8" />
+
+メニューは名前と価格を設定します。
+
+<img width="1106" alt="Image" src="https://github.com/user-attachments/assets/5dbd932b-c2b0-42d2-bc28-6eb387c8925a" />
+
 
 ### 席の設定
-테이블 마다 주문을 받은 현황을 한눈에 볼 수 있습니다. 주문 총 가격은 해당 테이블에서 주문한 총 가격입니다. 계산을 완료하면 초기화 버튼을 눌러줍니다.
-[image]
+各テーブルごとの注文状況を一目で確認できます。注文の合計金額は、そのテーブルで注文された合計金額です。会計が完了したら、リセットボタンを押してください。
 
-주문을 설정할 때는 이름만 설정합니다. 이름은 테이블 마다 변경할 수 있고 삭제 할 수 있습니다.
-[image]
+<img width="1432" alt="Image" src="https://github.com/user-attachments/assets/8035917c-5943-4419-8237-498354ffc549" />
+
+注文を設定する際は、名前のみを設定します。名前はテーブルごとに変更や削除が可能です。
+
+<img width="1431" alt="Image" src="https://github.com/user-attachments/assets/80af7391-19ac-43e8-8e3c-540758202031" />
 
 ### 注文詳細
-주문 리스트에서는 테이블의 고객의 주문을 추가할 수 있습니다.
-[image]
+注文リストでは、テーブルの顧客の注文を追加できます。
 
-주문 추가를 누르면 주문이 가능한 메뉴가 셀렉트 박스로 나타납니다. 주문 양과 메뉴를 정해줍니다.
-[image]
+<img width="1310" alt="Image" src="https://github.com/user-attachments/assets/a5997f80-c341-4d73-8a73-8f1d46c0e4c8" />
+
+「注文追加」ボタンを押すと、注文可能なメニューがセレクトボックスに表示されます。注文の数量とメニューを選択します。
+
+<img width="1320" alt="Image" src="https://github.com/user-attachments/assets/f7ef0fb6-7564-41bc-af7f-3ffc08c5cb49" />
+
+注文を設定すると、テーブル画面には次のように表示されます。
+
+<img width="1352" alt="Image" src="https://github.com/user-attachments/assets/0cd4bdd5-a701-4d8e-ba62-05516ed08866" />
+
+リセットボタンを押すと、すべての注文が削除されます。
+
+<img width="1129" alt="Image" src="https://github.com/user-attachments/assets/d8911aad-5939-4ce4-bac9-1b9c503359f3" />
 
 ---
 
 ## ✨ 今後のアップデート予定
-- ✅ **検索機能**: メニューや注文を検索できる機能
-- ✅ **予約機能**: 座席の事前予約を可能にする
+- **検索機能**: メニューや注文を検索できる機能
+- **予約機能**: 座席の事前予約を可能にする
 
 
 
