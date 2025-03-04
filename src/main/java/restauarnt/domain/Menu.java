@@ -20,5 +20,4 @@ public class Menu {
 		this.menuName = menuName;
 		this.menuPrice = menuPrice;
 	}
-	
 }
