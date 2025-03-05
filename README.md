@@ -32,9 +32,9 @@ graph TD;
     end
 
     subgraph サーバー["Spring Boot サーバー"]
-        Controller["コントローラー\n(リクエスト処理)"]
-        Service["サービス\n(ビジネスロジック)"]
-        Repository["リポジトリ\n(MyBatis)"]
+        Controller["コントローラー(リクエスト処理)"]
+        Service["サービス(ビジネスロジック)"]
+        Repository["リポジトリ(MyBatis)"]
     end
 
     subgraph データベース["Database"]
