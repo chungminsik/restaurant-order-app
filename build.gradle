@@ -43,6 +43,13 @@ dependencies {
 
 }
 
+jar {
+	archiveBaseName = 'app'       // 원하는 이름
+	archiveVersion = ''           // 버전 제거
+	archiveClassifier = ''        // 부가 식별자 제거
+}
+
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
