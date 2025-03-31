@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>주문 수정</title>
+    <title>注文編集</title>
     <style>
         html, body {
             height: 100%;
@@ -43,31 +43,31 @@
 </head>
 <body>
 <div class="container">
-    <h1>주문 수정</h1>
-    <!-- 전달된 orders 객체를 폼의 바인딩 대상으로 지정 -->
+    <h1>注文編集</h1>
+    <!-- 渡された orders オブジェクトをフォームのバインド対象に指定 -->
     <form th:object="${orders}" th:action="@{'/' + ${seatId} + '/orders/update'}" method="post">
-        <!-- 주문 ID는 수정할 필요 없으므로 hidden 필드로 전송 -->
+        <!-- 注文 ID は編集不要のため hidden フィールドとして送信 -->
         <input type="hidden" th:field="*{orders.ordersId}" />
 
-        <!-- 메뉴 선택: orders 객체의 메뉴 관련 속성(예, menuId)와 바인딩 -->
-        <label for="menu">메뉴 선택:</label>
+        <!-- メニュー選択: orders オブジェクトのメニュー関連プロパティ（例：menuId）とバインド -->
+        <label for="menu">メニュー選択:</label>
         <select id="menu" th:field="*{menuId}" required>
-            <option value="">메뉴를 선택하세요</option>
+            <option value="">メニューを選択してください</option>
             <option th:each="menu : ${menus}"
                     th:value="${menu.menuId}"
                     th:text="${menu.menuName}">
             </option>
         </select>
 
-        <!-- 주문 갯수: orders 객체의 ordersAmount와 바인딩 -->
-        <label for="amount">주문 갯수:</label>
+        <!-- 注文数量: orders オブジェクトの ordersAmount とバインド -->
+        <label for="amount">注文数量:</label>
         <input type="number" id="amount" th:field="*{orders.ordersAmount}" min="1" required>
 
-        <!-- 수정 버튼 -->
-        <button type="submit">주문 수정</button>
+        <!-- 編集ボタン -->
+        <button type="submit">注文編集</button>
     </form>
-    <!-- 목록이나 홈으로 돌아가기 위한 버튼 예시 -->
-    <button type="button" onclick="location.href='/' + [[${seatId}]] + '/orders/list'">목록으로</button>
+    <!-- 一覧またはホームに戻るボタン -->
+    <button type="button" onclick="location.href='/' + [[${seatId}]] + '/orders/list'">一覧へ</button>
 </div>
 </body>
 </html>

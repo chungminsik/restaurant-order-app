@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>메뉴 편집</title>
+    <title>メニュー編集</title>
     <style>
         html, body {
             height: 100%;
@@ -47,28 +47,27 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>메뉴 편집</h1>
-        <form th:action="@{/menu/update}" th:object="${menu}" method="post">
-            <input type="hidden" th:field="*{menuId}"/> <!-- 메뉴 ID는 hidden 필드로 전달 -->
-            <div>
-                <label for="menuName">메뉴 이름:</label>
-                <input type="text" id="menuName" th:field="*{menuName}" maxlength="30" required/>
-            </div>
-            <div>
-                <label for="menuPrice">메뉴 가격:</label>
-                <input type="number" id="menuPrice" th:field="*{menuPrice}" required/>
-            </div>
-            <div>
-                <button type="submit">편집</button>
-            </div>
-        </form>
-
-        <!-- 이전 메뉴로 돌아가는 버튼 -->
+<div class="container">
+    <h1>メニュー編集</h1>
+    <form th:action="@{/menu/update}" th:object="${menu}" method="post">
+        <input type="hidden" th:field="*{menuId}"/> <!-- メニューIDは hidden フィールドで送信 -->
         <div>
-            <button onclick="location.href='/menu'">이전으로</button>
+            <label for="menuName">メニュー名:</label>
+            <input type="text" id="menuName" th:field="*{menuName}" maxlength="30" required/>
         </div>
+        <div>
+            <label for="menuPrice">メニュー価格:</label>
+            <input type="number" id="menuPrice" th:field="*{menuPrice}" required/>
+        </div>
+        <div>
+            <button type="submit">編集</button>
+        </div>
+    </form>
+
+    <!-- メニュー一覧へ戻るボタン -->
+    <div>
+        <button onclick="location.href='/menu'">戻る</button>
     </div>
+</div>
 </body>
 </html>
-

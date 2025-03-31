@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Seat List</title>
+    <title>座席一覧</title>
     <style>
         html, body {
             height: 100%;
@@ -19,7 +19,7 @@
             background-color: #f9f9f9;
         }
         table {
-            margin: 0 auto; /* Centers the table horizontally */
+            margin: 0 auto; /* テーブルを中央に配置 */
             border-collapse: collapse;
             width: 100%;
         }
@@ -49,92 +49,92 @@
     </style>
     <script th:inline="javascript">
         function confirmDelete(seatId) {
-            if (confirm('정말 삭제하시겠습니까?')) {
+            if (confirm('本当に削除しますか？')) {
                 location.href = seatId + '/seat/delete';
             }
         }
     </script>
 </head>
 <body>
-    <div class="container">
-        <h1>테이블 주문 현황</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>테이블 이름</th>
-                    <th>총 주문 가격</th>
-                    <th>주문 상세</th>
-                    <th>초기화</th>
-                    <th>설정</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="seat : ${seats}">
-                    <td th:text="${seat.seatName}"></td>
-                    <td th:text="${seat.seatPriceAmount}"></td>
-                    <td>
-                        <a th:href="@{'/' + ${seat.seatId} + '/orders'}">주문 상세</a>
-                    </td>
-                    <td>
-                        <a th:href="@{'/' + ${seat.seatId} + '/seat/clear'}">초기화</a>
-                    </td>
-                    <td>
-                        <button type="button" th:onclick="'editSeat(' + ${seat.seatId} + ')'">죄석 이름 편집</button>
-                        <a href="#" th:onclick="'confirmDelete(' + ${seat.seatId} + ');'">좌석 삭제</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <button onclick="createSeat()">테이블 새로 추가</button>
-        <button onclick="location.href='/'">홈으로</button>
-    </div>
+<div class="container">
+    <h1>テーブル注文状況</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>テーブル名</th>
+            <th>合計注文金額</th>
+            <th>注文詳細</th>
+            <th>リセット</th>
+            <th>設定</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="seat : ${seats}">
+            <td th:text="${seat.seatName}"></td>
+            <td th:text="${seat.seatPriceAmount}"></td>
+            <td>
+                <a th:href="@{'/' + ${seat.seatId} + '/orders'}">注文詳細</a>
+            </td>
+            <td>
+                <a th:href="@{'/' + ${seat.seatId} + '/seat/clear'}">リセット</a>
+            </td>
+            <td>
+                <button type="button" th:onclick="'editSeat(' + ${seat.seatId} + ')'">座席名編集</button>
+                <a href="#" th:onclick="'confirmDelete(' + ${seat.seatId} + ');'">座席削除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <button onclick="createSeat()">新しいテーブルを追加</button>
+    <button onclick="location.href='/'">ホームへ戻る</button>
+</div>
 
-    <script>
-        function createSeat() {
-            var seatName = prompt("등록할 Seat 이름을 입력하세요:");
-            if (seatName != null && seatName.trim() !== "") {
-                var form = document.createElement("form");
-                form.setAttribute("method", "post");
-                form.setAttribute("action", "/seat/create");
+<script>
+    function createSeat() {
+        var seatName = prompt("登録する座席名を入力してください:");
+        if (seatName != null && seatName.trim() !== "") {
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "/seat/create");
 
-                var input = document.createElement("input");
-                input.setAttribute("type", "hidden");
-                input.setAttribute("name", "seatName");
-                input.setAttribute("value", seatName);
-                form.appendChild(input);
+            var input = document.createElement("input");
+            input.setAttribute("type", "hidden");
+            input.setAttribute("name", "seatName");
+            input.setAttribute("value", seatName);
+            form.appendChild(input);
 
-                document.body.appendChild(form);
-                form.submit();
-            } else {
-                alert("Seat 이름을 입력해야 합니다.");
-            }
+            document.body.appendChild(form);
+            form.submit();
+        } else {
+            alert("座席名を入力してください。");
         }
+    }
 
-        function editSeat(seatId) {
-            var newSeatName = prompt("새로운 Seat 이름을 입력하세요:");
-            if (newSeatName != null && newSeatName.trim() !== "") {
-                var form = document.createElement("form");
-                form.setAttribute("method", "post");
-                form.setAttribute("action", "/seat/update");
+    function editSeat(seatId) {
+        var newSeatName = prompt("新しい座席名を入力してください:");
+        if (newSeatName != null && newSeatName.trim() !== "") {
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "/seat/update");
 
-                var idInput = document.createElement("input");
-                idInput.setAttribute("type", "hidden");
-                idInput.setAttribute("name", "seatId");
-                idInput.setAttribute("value", seatId);
-                form.appendChild(idInput);
+            var idInput = document.createElement("input");
+            idInput.setAttribute("type", "hidden");
+            idInput.setAttribute("name", "seatId");
+            idInput.setAttribute("value", seatId);
+            form.appendChild(idInput);
 
-                var nameInput = document.createElement("input");
-                nameInput.setAttribute("type", "hidden");
-                nameInput.setAttribute("name", "seatName");
-                nameInput.setAttribute("value", newSeatName);
-                form.appendChild(nameInput);
+            var nameInput = document.createElement("input");
+            nameInput.setAttribute("type", "hidden");
+            nameInput.setAttribute("name", "seatName");
+            nameInput.setAttribute("value", newSeatName);
+            form.appendChild(nameInput);
 
-                document.body.appendChild(form);
-                form.submit();
-            } else {
-                alert("Seat 이름을 입력해야 합니다.");
-            }
+            document.body.appendChild(form);
+            form.submit();
+        } else {
+            alert("座席名を入力してください。");
         }
-    </script>
+    }
+</script>
 </body>
 </html>

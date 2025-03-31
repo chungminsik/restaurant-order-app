@@ -1,112 +1,148 @@
-# レストラン注文管理システム
+# 🍽️ Restaurant Order System
+
 ## 概要
-レストランを運営する際にテーブル注文を受けて注文履歴を計算してくれる機能の職員用アプリケーションです。
+このプロジェクトは、レストランの注文管理を行うためのシステムです。メニュー管理、座席管理、注文管理を行うことができ、Spring Boot を用いて開発されました。
 
-従業員は自分のスマートフォンで注文を受け、支払い時に総額を計算できます。
+### このアプリの主な機能
+- **メニュー管理**: メニューの追加、編集、削除
+- **注文管理**: 顧客の注文受付、注文履歴管理
+- **座席管理**: レストランの座席予約および管理
+- **検索機能（開発予定）**: メニューや注文の検索機能
 
-## このアプリを使ってできること
-1. 登録したメニューから注文を受けることができる。
-2. WEBを通じて注文を受けて職員がレストランの注文情報を一緒に共有することができる。
-3. 顧客が注文した数量をWEB画面で直接登録して合計を計算することができる
+---
 
-# 技術スペック
-## back-end framework : Java spring boot
-- 使用理由 : 
-  1. ウェブプロジェクトに必要な多くの機能を持っている(Tomcat、テストツールなど)
-  2. Springのモジュール化された設計構造によりアプリケーションの拡張性が良い
-  3. 多くの開発者が使用しているウェブプログラミングツールとして多くのリファレンス資料がある
+## 技術スタック
+| 分類        | 技術                   |
+|------------|----------------------|
+| **言語**   | Java 17              |
+| **フレームワーク** | Spring Boot, Mybatis |
+| **テンプレートエンジン** | Thymeleaf            |
+| **フロントエンド** | JavaScript           |
+| **データベース** | MySQL                |
+| **ビルドツール** | Gradle               |
 
-## front-end : thymeleaf, Javascript
-- 使用理由 :　
-  1. 速い画面開発のためにThymeleafを利用
-
-## database : mybatis, mysql
-- 使用理由 : 
-  1. オープンソース関係型データベースの一つとして多くの開発者が使用する技術であるため、リファレンス資料が豊富。
-  2. 小規模のプロジェクトでも十分な性能を保障する。 特にトランザクション処理、インデックス機能を基本に持っているため、安定したデータ管理が可能。
-
-# 機能 & サービス説明
-機能は大きくメニュー管理、ホーム管理、席管理に分かれています
-
-## ホーム画面
-レストランにメニューを登録するボタンと、テーブルと注文を管理するボタンが存在します。
-![Image](https://github.com/user-attachments/assets/f72d288e-9b73-4edd-8bab-2b3c18e1ba50)
-
-## メニュー管理
-すでに登録されているメニューを見ることができます。
-![Image](https://github.com/user-attachments/assets/b8a98be7-084f-40e5-9e3f-a7ff0e6fa8e5)
-
-レストランで注文できるメニューを登録します。
-![Image](https://github.com/user-attachments/assets/7c5e7918-335c-4c63-bd36-fb3a05ce5582)
-
-## 席管理
-テーブルを設定できる画面です。 レストランによってテーブルの数と名前を決めることができます。
-
-テーブルでは、テーブルで注文した価格の合計を表示して計算するときに便利です。
-
-注文が完了したら、初期化ボタンを押して、新しいお客様のための準備をします。
-![Image](https://github.com/user-attachments/assets/c55168bf-43d7-411c-826a-e3ec343c46ea)
-
-## 注文管理
-テーブルごとに注文を等読できます。
-![Image](https://github.com/user-attachments/assets/6300761c-d17e-432e-89d7-a36eeb8c1237)
-
-数量とメニューを定めることができます。数量の基本値は1です。
-![Image](https://github.com/user-attachments/assets/0595caa0-332e-45dd-b8e7-ff3014db211b)
-
-注文登録はメニューから登録したメニューをセレクトボックスから選択できます。
-![Image](https://github.com/user-attachments/assets/9620bdbb-021d-4a4e-bedd-80344d592b7f)
-
-注文を追加すると次のようにテーブルに表示されます。
-![Image](https://github.com/user-attachments/assets/cd4c1f8f-1caa-4014-8e50-b87e0d16a753)
-
-初期化ボタンを押すと、注文に保存した内容が消えます。
-![Image](https://github.com/user-attachments/assets/59a05b44-0e5d-4a23-aa6f-768953bb1f1b)
-
-# アーキテクチャ説明
-
+---
 
 ## アーキテクチャ
-- Controller：リクエストを受け取り、レスポンスを返す
-- Service：ビジネスロジックを処理する
-- Repository（DAO）：データベースと接続する
-- Entity：データモデルを表す
-
-## request流れ
 ```mermaid
 graph TD;
-    User -->|Request| Controller;
-    Controller -->|Process| Service;
-    Service -->|Data Access| Repository;
-    Repository -->|Query| Database;
+    subgraph クライアント
+        User["👤 ユーザー"]
+        Browser["🌐 ブラウザ (Thymeleaf)"]
+    end
+
+    subgraph サーバー["Spring Boot サーバー"]
+        Controller["コントローラー(リクエスト処理)"]
+        Service["サービス(ビジネスロジック)"]
+        Repository["リポジトリ(MyBatis)"]
+    end
+
+    subgraph データベース["Database"]
+        MySQL["MySQL"]
+    end
+
+    User -->|リクエスト| Browser
+    Browser -->|リクエスト| Controller
+    Controller -->|処理| Service
+    Service -->|データ取得| Repository
+    Repository -->|DB クエリ| MySQL
+    MySQL -->|データ返却| Repository
+    Repository -->|データ返却| Service
+    Service -->|レスポンス生成| Controller
+    Controller -->|レスポンス送信| Browser
 ```
 
-## テーブルERD
+---
+
+## データベース ER 図
 ```mermaid
 erDiagram
     MENU {
-        int menu_id PK
-        varchar(30) menu_name
-        decimal(10) menu_price
+        Long menu_id PK "AUTO_INCREMENT"
+        String menu_name "NOT NULL"
+        Decimal menu_price "NOT NULL"
     }
     
     SEAT {
-        int seat_id PK
-        varchar(30) seat_name
-        int seat_price_amount
+        Long seat_id PK "AUTO_INCREMENT"
+        String seat_name "NOT NULL"
+        Integer seat_price_amount
     }
     
     ORDERS {
-        int orders_id PK
-        varchar(30) orders_menu_name
-        int orders_amount
-        int orders_price_amount
-        timestamp orders_datetime
-        int orders_seat_id FK
+        Long orders_id PK "AUTO_INCREMENT"
+        String orders_menu_name "NOT NULL"
+        Integer orders_amount "DEFAULT 1"
+        Integer orders_price_amount
+        Timestamp orders_datetime "DEFAULT CURRENT_TIMESTAMP"
+        Long orders_seat_id FK "REFERENCES SEAT(seat_id)"
     }
-
+    
     SEAT ||--o{ ORDERS : "1:N"
 ```
+
+---
+
+## セットアップ & 実行方法
+### **環境構築**
+- JDK 17 以上をインストール
+- MySQL (DB: `restaurant_db`) をセットアップ
+- `application.yml` にデータベース情報を設定
+
+### **アクセス**
+- **アプリ URL:** `http://localhost:8080`
+
+---
+
+## スクリーンショット
+### ホーム画面
+ホーム画面では、メニューを設定するボタンと、レストランの席ごとの注文を管理する画面を選択できます。
+
+<img width="1448" alt="Image" src="https://github.com/user-attachments/assets/4d9d5994-9801-49a3-855a-bbf46e1564e2" />
+
+### メニュー設定
+メニューを設定、編集、削除する画面です。
+
+<img width="1113" alt="Image" src="https://github.com/user-attachments/assets/d23e0a2b-9c7e-4aad-ba11-30c82c750ac8" />
+
+メニューは名前と価格を設定します。
+
+<img width="1106" alt="Image" src="https://github.com/user-attachments/assets/5dbd932b-c2b0-42d2-bc28-6eb387c8925a" />
+
+
+### 席の設定
+各テーブルごとの注文状況を一目で確認できます。注文の合計金額は、そのテーブルで注文された合計金額です。会計が完了したら、リセットボタンを押してください。
+
+<img width="1432" alt="Image" src="https://github.com/user-attachments/assets/8035917c-5943-4419-8237-498354ffc549" />
+
+注文を設定する際は、名前のみを設定します。名前はテーブルごとに変更や削除が可能です。
+
+<img width="1431" alt="Image" src="https://github.com/user-attachments/assets/80af7391-19ac-43e8-8e3c-540758202031" />
+
+### 注文詳細
+注文リストでは、テーブルの顧客の注文を追加できます。
+
+<img width="1310" alt="Image" src="https://github.com/user-attachments/assets/a5997f80-c341-4d73-8a73-8f1d46c0e4c8" />
+
+「注文追加」ボタンを押すと、注文可能なメニューがセレクトボックスに表示されます。注文の数量とメニューを選択します。
+
+<img width="1320" alt="Image" src="https://github.com/user-attachments/assets/f7ef0fb6-7564-41bc-af7f-3ffc08c5cb49" />
+
+注文を設定すると、テーブル画面には次のように表示されます。
+
+<img width="1352" alt="Image" src="https://github.com/user-attachments/assets/0cd4bdd5-a701-4d8e-ba62-05516ed08866" />
+
+リセットボタンを押すと、すべての注文が削除されます。
+
+<img width="1129" alt="Image" src="https://github.com/user-attachments/assets/d8911aad-5939-4ce4-bac9-1b9c503359f3" />
+
+---
+
+## ✨ 今後のアップデート予定
+- **検索機能**: メニューや注文を検索できる機能
+- **予約機能**: 座席の事前予約を可能にする
+
+
 
 
 

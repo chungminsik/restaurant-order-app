@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Menu Form</title>
+    <title>メニュー登録</title>
     <style>
         html, body {
             height: 100%;
@@ -47,21 +47,21 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>메뉴 등록하기</h1>
-        <form th:action="@{/menu/create}" th:object="${menu}" method="post">
-            <div>
-                <label for="menuName">메뉴 이름:</label>
-                <input type="text" id="menuName" th:field="*{menuName}" maxlength="30" required/>
-            </div>
-            <div>
-                <label for="menuPrice">메뉴 가격:</label>
-                <input type="number" id="menuPrice" th:field="*{menuPrice}" required/>
-            </div>
-            <div>
-                <button type="submit">메뉴 등록</button>
-            </div>
-        </form>
-    </div>
+<div class="container">
+    <h1>メニュー登録</h1>
+    <form th:action="@{/menu/create}" th:object="${menu}" method="post">
+        <div>
+            <label for="menuName">メニュー名:</label>
+            <input type="text" id="menuName" th:field="*{menuName}" maxlength="30" required/>
+        </div>
+        <div>
+            <label for="menuPrice">メニュー価格:</label>
+            <input type="number" id="menuPrice" th:field="*{menuPrice}" required/>
+        </div>
+        <div>
+            <button type="submit">メニュー登録</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Orders List</title>
+    <title>注文一覧</title>
     <style>
         html, body {
             height: 100%;
@@ -19,7 +19,7 @@
             background-color: #f9f9f9;
         }
         table {
-            margin: 0 auto; /* Centers the table horizontally */
+            margin: 0 auto; /* テーブルを中央に配置 */
             border-collapse: collapse;
             width: 100%;
         }
@@ -49,8 +49,8 @@
     </style>
     <script>
         function createOrder() {
-            var menuName = prompt("주문할 메뉴 이름을 입력하세요:");
-            var amount = prompt("주문할 갯수를 입력하세요:");
+            var menuName = prompt("注文するメニュー名を入力してください:");
+            var amount = prompt("注文する数量を入力してください:");
             if (menuName != null && menuName.trim() !== "" && amount != null && amount.trim() !== "" && !isNaN(amount)) {
                 var form = document.createElement("form");
                 form.setAttribute("method", "post");
@@ -71,28 +71,28 @@
                 document.body.appendChild(form);
                 form.submit();
             } else {
-                alert("올바른 메뉴 이름과 갯수를 입력해야 합니다.");
+                alert("正しいメニュー名と数量を入力してください。");
             }
         }
 
         function deleteOrder(seatId, orderId, ordersPriceAmount) {
-            if(confirm("정말 삭제하시겠습니까?")) { // 삭제 확인 메시지
+            if(confirm("本当に削除しますか？")) { // 削除確認メッセージ
                 let form = document.createElement("form");
                 form.setAttribute("method", "post");
 
-                // 삭제 URL은 필요에 따라 조정합니다.
+                // 削除URLは必要に応じて調整してください
                 form.setAttribute("action", "/" + seatId + "/orders/delete");
 
                 let orderInput;
 
-                // ordersId 값을 hidden input으로 추가
+                // ordersId を hidden input として追加
                 orderInput = document.createElement("input");
                 orderInput.setAttribute("type", "hidden");
                 orderInput.setAttribute("name", "ordersId");
                 orderInput.setAttribute("value", orderId);
                 form.appendChild(orderInput);
 
-                // ordersId 값을 hidden input으로 추가
+                // ordersPriceAmount を hidden input として追加
                 orderInput = document.createElement("input");
                 orderInput.setAttribute("type", "hidden");
                 orderInput.setAttribute("name", "ordersPriceAmount");
@@ -106,34 +106,34 @@
     </script>
 </head>
 <body>
-    <div class="container">
-        <h1>주문 리스트</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>메뉴 이름</th>
-                    <th>갯수</th>
-                    <th>합계</th>
-                    <th>편집</th>
-                    <th>삭제</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="order : ${orders}">
-                    <td th:text="${order.ordersMenuName}"></td>
-                    <td th:text="${order.ordersAmount}"></td>
-                    <td th:text="${order.ordersPriceAmount}"></td>
-                    <td>
-                        <a th:href="@{'/' + ${order.ordersSeatId} + '/orders/update'}">편집</a>
-                    </td>
-                    <td>
-                        <a href="#" th:onclick="|deleteOrder(${order.ordersSeatId}, ${order.ordersId}, ${order.ordersPriceAmount}); return false;|">삭제</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <button th:onclick="'location.href=\'/' + ${seatId} + '/orders/create\''">주문 추가</button>
-        <button onclick="location.href='/seat'">뒤로</button>
-    </div>
+<div class="container">
+    <h1>注文一覧</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>メニュー名</th>
+            <th>数量</th>
+            <th>合計</th>
+            <th>編集</th>
+            <th>削除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.ordersMenuName}"></td>
+            <td th:text="${order.ordersAmount}"></td>
+            <td th:text="${order.ordersPriceAmount}"></td>
+            <td>
+                <a th:href="@{'/' + ${order.ordersSeatId} + '/orders/update'}">編集</a>
+            </td>
+            <td>
+                <a href="#" th:onclick="|deleteOrder(${order.ordersSeatId}, ${order.ordersId}, ${order.ordersPriceAmount}); return false;|">削除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <button th:onclick="'location.href=\'/' + ${seatId} + '/orders/create\''">注文追加</button>
+    <button onclick="location.href='/seat'">戻る</button>
+</div>
 </body>
 </html>
